@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Career Router | SIH 2026</title>
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+<section class="hero">
+
+<div class="overlay">
+
+<img src="hero.jpeg" class="hero-img" alt="Career Router Hero">
+
+<div class="badge">
+🏆 NATIONAL LEVEL INNOVATION CHALLENGE
+</div>
+
+<h1>SMART INDIA HACKATHON</h1>
+
+<h2>2026</h2>
+
+<div class="title">Career Router</div>
+
+<div class="subtitle">
+AI-Powered Career Guidance & Opportunity Portal
+</div>
+
+<div class="quote">
+“Your future is not determined by your background, but by the opportunities you discover today.”
+</div>
+
+<button class="btn" onclick="startPortal()">
+GET STARTED →
+</button>
+
+</div>
+
+</section>
+
+<section class="portal" id="portal">
+<div class="portal-content">
+<div class="portal-heading" id="authStageHeading">
+<span class="portal-kicker">YOUR OPPORTUNITIES</span>
+<h2>Student Access</h2>
+<p>Login or register to discover opportunities selected for your next step.</p>
+</div>
+
+<div class="auth-panel" id="authPanel">
+<div>
+<span class="auth-label">STUDENT ACCESS</span>
+<h3 id="authGreeting">Create your student account</h3>
+<p id="authStatus">Register or login to access jobs, internships, scholarships and more.</p>
+</div>
+<div class="auth-actions">
+<button class="auth-btn secondary" type="button" onclick="showAuth('login')">Login</button>
+<button class="auth-btn primary" type="button" onclick="showAuth('register')">Register</button>
+</div>
+</div>
+
+<button class="resume-builder-toggle" id="resumeBuilderToggle" type="button" onclick="toggleResumeBuilder()">Build Your Resume</button>
+
+<section class="resume-builder" id="resumeBuilder" aria-labelledby="resumeBuilderTitle" hidden>
+<div class="resume-builder-heading">
+<span class="portal-kicker">NO RESUME YET?</span>
+<h2 id="resumeBuilderTitle">Build your resume here</h2>
+<p>Enter your details and create a simple, professional resume before applying.</p>
+</div>
+
+<div class="resume-builder-layout">
+<form class="resume-form" onsubmit="buildResume(event)">
+<div class="resume-form-grid">
+<div class="resume-field full-width">
+<label for="resumeBuilderName">Full name</label>
+<input id="resumeBuilderName" type="text" placeholder="Your full name" required>
+</div>
+<div class="resume-field">
+<label for="resumeBuilderRole">Career goal</label>
+<input id="resumeBuilderRole" type="text" placeholder="Student / Software Developer">
+</div>
+<div class="resume-field">
+<label for="resumeBuilderEmail">Email</label>
+<input id="resumeBuilderEmail" type="email" placeholder="you@example.com" required>
+</div>
+<div class="resume-field">
+<label for="resumeBuilderPhone">Mobile number</label>
+<input id="resumeBuilderPhone" type="tel" placeholder="10-digit mobile number">
+</div>
+<div class="resume-field">
+<label for="resumeBuilderEducation">Education</label>
+<textarea id="resumeBuilderEducation" placeholder="Degree, college, year and marks"></textarea>
+</div>
+<div class="resume-field">
+<label for="resumeBuilderSkills">Skills</label>
+<textarea id="resumeBuilderSkills" placeholder="JavaScript, communication, teamwork"></textarea>
+</div>
+<div class="resume-field full-width">
+<label for="resumeBuilderProjects">Projects or experience</label>
+<textarea id="resumeBuilderProjects" placeholder="Project name - what you built and what you learned"></textarea>
+</div>
+<div class="resume-field full-width">
+<label for="resumeBuilderSummary">About you</label>
+<textarea id="resumeBuilderSummary" placeholder="A short 2-3 line professional summary"></textarea>
+</div>
+</div>
+<div class="resume-form-actions">
+<button class="auth-submit" type="submit">Build my resume</button>
+<p class="resume-builder-status" id="resumeBuilderStatus" role="status"></p>
+</div>
+</form>
+
+<article class="resume-preview" id="resumePreview" aria-live="polite">
+<div class="resume-preview-empty">
+<span>RESUME PREVIEW</span>
+<h3>Your resume will appear here</h3>
+<p>Fill the form and click “Build my resume” to preview it.</p>
+</div>
+</article>
+</div>
+</section>
+
+<div class="dashboard" id="dashboard">
+<div class="dashboard-heading">
+<span class="portal-kicker">CAREER ROUTER</span>
+<h2>Choose an opportunity</h2>
+<p>Click a category to see available options and what to do next.</p>
+</div>
+
+<div class="category-grid">
+<button class="category-card" type="button" onclick="showCategory('jobs')"><span>💼</span><strong>Jobs</strong><small>Government and private roles</small></button>
+<button class="category-card" type="button" onclick="showCategory('internships')"><span>🚀</span><strong>Internships</strong><small>Government and private internships</small></button>
+<button class="category-card" type="button" onclick="showCategory('scholarships')"><span>🎓</span><strong>Scholarships</strong><small>Private, tech and non-tech support</small></button>
+<button class="category-card" type="button" onclick="showCategory('higher-opportunities')"><span>📈</span><strong>Higher Opportunities</strong><small>Exams, fellowships and career growth</small></button>
+<button class="category-card" type="button" onclick="showCategory('volunteerships')"><span>🤝</span><strong>Volunteerships</strong><small>Flexible part-time opportunities</small></button>
+<button class="category-card" type="button" onclick="showCategory('higher-studies')"><span>📚</span><strong>Higher Studies</strong><small>Roadmap based on your stream</small></button>
+</div>
+
+<div class="category-content" id="categoryContent">
+<p>Select a category above to continue.</p>
+</div>
+</div>
+
+<div class="chatbot" id="chatbot">
+<button class="chatbot-toggle" type="button" onclick="toggleChatbot()" aria-label="Open AI recommendation assistant">✦ AI Guide</button>
+<div class="chatbot-panel">
+<div class="chatbot-header"><strong>AI Career Guide</strong><button type="button" onclick="toggleChatbot()" aria-label="Close assistant">&times;</button></div>
+<div class="chatbot-messages" id="chatMessages"><div class="bot-message">Hi! Tell me your stream or goal. I can recommend jobs, internships, scholarships and higher-study paths.</div></div>
+<div class="chatbot-quick"><button type="button" onclick="askRecommendation('government jobs')">Government jobs</button><button type="button" onclick="askRecommendation('tech internships')">Tech internships</button><button type="button" onclick="askRecommendation('scholarships')">Scholarships</button></div>
+<form class="chatbot-form" onsubmit="sendChatMessage(event)"><input id="chatInput" type="text" placeholder="Ask for a recommendation..." autocomplete="off" required><button type="submit" aria-label="Send message">Send</button></form>
+</div>
+</div>
+
+<div class="auth-modal" id="authModal" aria-hidden="true">
+<div class="auth-dialog" role="dialog" aria-modal="true" aria-labelledby="authTitle">
+<button class="close-auth" type="button" aria-label="Close" onclick="closeAuth()">&times;</button>
+<div class="auth-dialog-heading">
+<span class="portal-kicker">STUDENT ACCOUNT</span>
+<h2 id="authTitle">Create your account</h2>
+<p id="authSubtitle">Enter your details to register as a student.</p>
+</div>
+
+<form id="registerForm" onsubmit="registerStudent(event)">
+<label for="studentName">Full name</label>
+<input id="studentName" type="text" placeholder="Enter your full name" autocomplete="name" required>
+
+<label for="studentEmail">Email address</label>
+<input id="studentEmail" type="email" placeholder="you@example.com" autocomplete="email" required>
+
+<label for="studentPhone">Mobile number</label>
+<input id="studentPhone" type="tel" placeholder="10-digit mobile number" pattern="[0-9]{10}" maxlength="10" autocomplete="tel" required>
+
+<label for="studentAge">Age</label>
+<input id="studentAge" type="number" min="13" max="100" placeholder="Your age" required>
+
+<label for="studentResume">Upload resume</label>
+<input id="studentResume" type="file" accept=".pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document" required>
+<small class="file-hint">PDF, DOC or DOCX · Max 5 MB</small>
+
+<label for="studentPassword">Create password</label>
+<input id="studentPassword" type="password" minlength="8" placeholder="At least 8 characters" autocomplete="new-password" required>
+
+<label for="confirmPassword">Confirm password</label>
+<input id="confirmPassword" type="password" minlength="8" placeholder="Re-enter your password" autocomplete="new-password" required>
+
+<p class="auth-error" id="registerError" role="alert"></p>
+<button class="auth-submit" type="submit">Create account</button>
+</form>
+
+<form id="loginForm" onsubmit="loginStudent(event)">
+<label for="loginEmail">Email address</label>
+<input id="loginEmail" type="email" placeholder="you@example.com" autocomplete="email" required>
+
+<label for="loginPassword">Password</label>
+<input id="loginPassword" type="password" placeholder="Enter your password" autocomplete="current-password" required>
+
+<p class="auth-error" id="loginError" role="alert"></p>
+<button class="auth-submit" type="submit">Login to portal</button>
+</form>
+
+<button class="auth-switch" type="button" id="authSwitch" onclick="switchAuthMode()">Already registered? Login</button>
+</div>
+
+</div>
+
+</section>
+
+<script src="script.js"></script>
+
+</body>
+</html>
